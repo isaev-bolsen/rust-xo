@@ -12,11 +12,24 @@ impl Clone for Cell {
 }
 
 
+struct Field
+{
+    field : Vec<Vec<Cell>>,
+}
+
+impl Field
+{
+    fn new(size: usize) -> Field
+    {
+    Field { field: vec![vec!(Cell::E;size); size] }
+    }
+}
+
 fn main() {
 
-    let mut field=[[Cell::E;3];3];
-    field[1][1]=Cell::X;
-    field[1][2]=Cell::O;
+    let mut field=Field::new(3);
+    field.field[1][1]=Cell::X;
+    field.field[1][2]=Cell::O;
 
     println!("Hello, world!");
 }
