@@ -1,0 +1,6 @@
+[package]
+name = "XO"
+version = "0.1.0"
+authors = ["isaev-bolsen <al_mamistov@mail.ru>"]
+
+[dependencies]
