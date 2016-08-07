@@ -19,7 +19,7 @@ struct Field
 
 impl Field
 {
-    fn new(size: usize) -> Field
+    fn new (size: usize) -> Field
     {
         Field { field: vec![vec!(Cell::E;size); size] }
     }
@@ -44,6 +44,23 @@ impl Field
        }
        for _ in  self.field[0].iter() { print!("+---"); }
        println!("+");
+    }
+
+    fn has_empty_cells (&self) -> bool
+    {
+        for row in self.field.iter()
+        {
+           for element in row.iter()
+           {
+                match *element
+                {
+                    Cell::E => return true, 
+                    Cell::X => continue,
+                    Cell::O => continue,
+                }
+           }
+        }
+        return false;
     }
 }
 
