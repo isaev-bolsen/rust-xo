@@ -7,12 +7,6 @@ enum Cell
     O,
 }
 
-struct Coord
-{
-    column : usize,
-    row : usize,
-}
-
 impl Copy for Cell {}
 impl Clone for Cell {
      fn clone(&self) -> Cell { *self } 
@@ -69,21 +63,29 @@ impl Field
         }
         return false;
     }
+
+    fn try_set_cell(&mut self, column : usize, row : usize, value : Cell) -> bool
+    {
+        self.field[row][column] = Cell::X;
+        return true;
+    }
 }
 
 fn main() 
 {
     let mut field = Field::new(3);
 
+    field.out();
+
     while field.has_empty_cells()
     {
         println!("Column?");
         let column = read_int();
         println!("Row?");
-        let row=read_int();
+        let row = read_int();
 
-    field.field[row][column] = Cell::X;
-    field.out();
+        field.try_set_cell(column, row, Cell::X);
+        field.out();
     }
 }
 
