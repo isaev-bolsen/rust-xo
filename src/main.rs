@@ -28,6 +28,8 @@ impl Field
     {
        for row in self.field.iter()
        {
+           for _ in row.iter() { print!("+---"); }
+           println!("+");
            print!("|");
            for element in row.iter()
            {
@@ -40,6 +42,8 @@ impl Field
            }
            println!("");
        }
+       for _ in  self.field[0].iter() { print!("+---"); }
+       println!("+");
     }
 }
 
@@ -50,6 +54,4 @@ fn main() {
     field.field[1][2]=Cell::O;
 
     field.out();
-
-    println!("Hello, world!");
 }
