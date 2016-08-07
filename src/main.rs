@@ -66,27 +66,47 @@ impl Field
 
     fn try_set_cell(&mut self, column : usize, row : usize, value : Cell) -> bool
     {
-        self.field[row][column] = Cell::X;
-        return true;
+        if column>=self.field[0].len() {return false;}
+        if row>=self.field.len() {return false;}
+        match self.field[row][column]
+        {
+            Cell::E => {
+                self.field[row][column] = value; 
+                return true;
+            },
+            Cell::X => return false,
+            Cell::O => return false,
+        }
     }
 }
 
 fn main() 
 {
     let mut field = Field::new(3);
-
-    field.out();
+    let mut turn = Cell::X;
 
     while field.has_empty_cells()
     {
+        field.out();
+
         println!("Column?");
         let column = read_int();
         println!("Row?");
         let row = read_int();
 
-        field.try_set_cell(column, row, Cell::X);
-        field.out();
+        if field.try_set_cell(column, row, turn)
+        {
+            println!("Move Accepted");
+            match turn
+            {
+                Cell::E => panic!("Something is wrong!"),
+                Cell::X => {turn = Cell::O; println!("Turn of O now")},
+                Cell::O => {turn = Cell::X; println!("Turn of X now")},
+            }
+        }
     }
+
+    field.out();
 }
 
 fn read_int() -> usize
