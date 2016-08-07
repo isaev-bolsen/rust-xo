@@ -21,7 +21,25 @@ impl Field
 {
     fn new(size: usize) -> Field
     {
-    Field { field: vec![vec!(Cell::E;size); size] }
+        Field { field: vec![vec!(Cell::E;size); size] }
+    }
+
+    fn out (&self)
+    {
+       for row in self.field.iter()
+       {
+           print!("|");
+           for element in row.iter()
+           {
+                match *element
+                {
+                    Cell::E => print!("   |"),  
+                    Cell::X => print!(" X |"),  
+                    Cell::O => print!(" O |"),  
+                }
+           }
+           println!("");
+       }
     }
 }
 
@@ -30,6 +48,8 @@ fn main() {
     let mut field=Field::new(3);
     field.field[1][1]=Cell::X;
     field.field[1][2]=Cell::O;
+
+    field.out();
 
     println!("Hello, world!");
 }
