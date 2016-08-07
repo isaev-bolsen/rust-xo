@@ -1,9 +1,16 @@
+use std::io;
 
 enum Cell
 {
     E,
     X,
     O,
+}
+
+struct Coord
+{
+    column : usize,
+    row : usize,
 }
 
 impl Copy for Cell {}
@@ -64,11 +71,32 @@ impl Field
     }
 }
 
-fn main() {
+fn main() 
+{
+    let mut field = Field::new(3);
 
-    let mut field=Field::new(3);
-    field.field[1][1]=Cell::X;
-    field.field[1][2]=Cell::O;
+    while field.has_empty_cells()
+    {
+        println!("Column?");
+        let column = read_int();
+        println!("Row?");
+        let row=read_int();
 
+    field.field[row][column] = Cell::X;
     field.out();
+    }
+}
+
+fn read_int() -> usize
+{
+    loop 
+    {     
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Failed to read line");
+        
+        match input.trim().parse() {
+            Ok(num) => return num,
+            Err(_) => continue,
+        };
+    }
 }
