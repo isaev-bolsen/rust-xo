@@ -76,21 +76,33 @@ trait HasEmtyCells
     fn has_empty_cells (&self) -> bool;
 }
 
+impl HasEmtyCells for Vec<Cell>
+{
+    fn has_empty_cells (&self) -> bool
+    {
+        for element in self.iter()
+        {
+            match *element
+            {
+                Cell::E => return true, 
+                Cell::X => continue,
+                Cell::O => continue,
+            }
+        }
+        return false;
+    }
+}
+
 impl HasEmtyCells for Field
 {
     fn has_empty_cells (&self) -> bool
     {
         for row in self.field.iter()
         {
-           for element in row.iter()
-           {
-                match *element
-                {
-                    Cell::E => return true, 
-                    Cell::X => continue,
-                    Cell::O => continue,
-                }
-           }
+            if row.has_empty_cells()
+            {
+                return true;
+            }
         }
         return false;
     }
