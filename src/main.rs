@@ -71,6 +71,27 @@ impl Field
     }
 }
 
+trait CountElements<T>
+{
+    fn count (&self, element: T) -> i32;
+}
+
+impl<T> CountElements<T> for Vec<T> where T : Eq
+{
+    fn count (&self, item: T) -> i32
+    {
+        let mut res = 0;
+        for element in self.iter()
+        {
+            if item==*element 
+            {
+                res+=1;
+            }
+        }     
+        return res;
+    }
+}
+
 trait HasEmptyCells
 {
     fn has_empty_cells (&self) -> bool;
