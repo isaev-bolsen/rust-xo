@@ -12,7 +12,6 @@ impl Clone for Cell {
      fn clone(&self) -> Cell { *self } 
 }
 
-
 struct Field
 {
     field : Vec<Vec<Cell>>,
@@ -47,6 +46,38 @@ impl Field
        println!("+");
     }
 
+    fn try_set_cell(&mut self, column : usize, row : usize, value : Cell) -> bool
+    {
+        if column>=self.field[0].len() {return false;}
+        if row>=self.field.len() {return false;}
+        match self.field[row][column]
+        {
+            Cell::E => {
+                self.field[row][column] = value; 
+                return true;
+            },
+            Cell::X => return false,
+            Cell::O => return false,
+        }
+    }
+
+    fn winning_row(&mut self, player : Cell) -> i32
+    {
+        for row in self.field.iter()
+        {
+
+        }
+        return -1;
+    }
+}
+
+trait HasEmtyCells
+{
+    fn has_empty_cells (&self) -> bool;
+}
+
+impl HasEmtyCells for Field
+{
     fn has_empty_cells (&self) -> bool
     {
         for row in self.field.iter()
@@ -62,21 +93,6 @@ impl Field
            }
         }
         return false;
-    }
-
-    fn try_set_cell(&mut self, column : usize, row : usize, value : Cell) -> bool
-    {
-        if column>=self.field[0].len() {return false;}
-        if row>=self.field.len() {return false;}
-        match self.field[row][column]
-        {
-            Cell::E => {
-                self.field[row][column] = value; 
-                return true;
-            },
-            Cell::X => return false,
-            Cell::O => return false,
-        }
     }
 }
 
