@@ -99,7 +99,7 @@ fn main()
             println!("Move Accepted");
             match turn
             {
-                Cell::E => panic!("Something is wrong!"),
+                Cell::E => panic!("Something is wrong! : turn of empty"),
                 Cell::X => {turn = Cell::O; println!("Turn of O now")},
                 Cell::O => {turn = Cell::X; println!("Turn of X now")},
             }
