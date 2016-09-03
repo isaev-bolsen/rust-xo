@@ -71,12 +71,12 @@ impl Field
     }
 }
 
-trait HasEmtyCells
+trait HasEmptyCells
 {
     fn has_empty_cells (&self) -> bool;
 }
 
-impl HasEmtyCells for Vec<Cell>
+impl HasEmptyCells for Vec<Cell>
 {
     fn has_empty_cells (&self) -> bool
     {
@@ -93,7 +93,7 @@ impl HasEmtyCells for Vec<Cell>
     }
 }
 
-impl HasEmtyCells for Field
+impl HasEmptyCells for Field
 {
     fn has_empty_cells (&self) -> bool
     {
