@@ -19,11 +19,13 @@ struct Field
 
 impl Field
 {
+    //"Constructor"
     fn new (size: usize) -> Field
     {
         Field { field: vec![vec!(Cell::E;size); size] }
     }
 
+    //print field into output stream
     fn out (&self)
     {
        for row in self.field.iter()
@@ -46,6 +48,7 @@ impl Field
        println!("+");
     }
 
+    //try to set cell value. If cell is empty sets value end returns true else returns false;
     fn try_set_cell(&mut self, column : usize, row : usize, value : Cell) -> bool
     {
         if column>=self.field[0].len() {return false;}
@@ -71,6 +74,7 @@ impl Field
     }
 }
 
+//For counting elements, which equal to 
 trait CountElements<T>
 {
     fn count (&self, element: T) -> i32;
@@ -92,6 +96,7 @@ impl<T> CountElements<T> for Vec<T> where T : Eq
     }
 }
 
+//For verifing, if collection contains empty cell
 trait HasEmptyCells
 {
     fn has_empty_cells (&self) -> bool;
